@@ -3,30 +3,59 @@ package id.ac.polinema.idealbodyweight;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import id.ac.polinema.idealbodyweight.Fragments.AboutFragment;
+import id.ac.polinema.idealbodyweight.Fragments.MenuFragment;
 
-	// Deklarasikan atribut Fragment di sini
+public class MainActivity extends AppCompatActivity implements
+	MenuFragment.OnFragmentInteractionListener {
+
+		// Deklarasikan atribut Fragment di sini
+		private AboutFragment aboutFragment;
+
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+			aboutFragment = AboutFragment.newInstance("Muchammad Raka Gigih Nugraha");
+		}
+
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			getMenuInflater().inflate(R.menu.menu, menu);
+			return true;
+		}
+
+		@Override
+		public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+			// TODO: Tambahkan penanganan menu di sini
+			if (item.getItemId() == R.id.menu_about) {
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.fragment_container, aboutFragment)
+						.addToBackStack(null)
+						.commit();
+			}
+
+			return super.onOptionsItemSelected(item);
+
+		}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	public void onBrocaIndexButtonClicked() {
+		
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return  true;
+	public void onBodyMassIndexButtonClicked() {
+
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-		// TODO: Tambahkan penanganan menu di sini
+	public void onFragmentInteraction(Uri uri) {
 
-		return super.onOptionsItemSelected(item);
 	}
 }
