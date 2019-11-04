@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import id.ac.polinema.idealbodyweight.R;
 
@@ -36,23 +39,38 @@ public class ResultFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result, container, false);
         TextView informationText = view.findViewById(R.id.text_information);
+        String tag = null;
+        String [] arr = {"brocca","bmi"};
+        Fragment fragment = null;
+        for (int i=0; i<arr.length; i++) {
+            fragment = getFragmentManager().findFragmentByTag(arr[i].toString());
+            if (fragment instanceof id.ac.polinema.idealbodyweight.fragment.BrocaIndexFragment) {
+                tag = fragment.getTag().toString();
+            } else if (fragment instanceof BmiIndexFragment) {
+                tag = fragment.getTag().toString();
+
+            }
+        }
+
         informationText.setText(information);
+        final String finalTag = tag;
+
         Button tryAgainButton = view.findViewById(R.id.button_try_again);
         tryAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mListener != null) {
-                    mListener.onTryAgainButtonClicked("BrocaIndex");
+                if(mListener != null){
+                    mListener.onTryAgainButtonClicked(finalTag);
+
                 }
             }
         });
-        return  view;
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void setInformation(String information) {
-        this.information = information;
-    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -84,6 +102,9 @@ public class ResultFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onTryAgainButtonClicked(String tag);
-        void onFragmentInteraction(Uri uri);
+    }
+
+    public void setInformation(String information){
+        this.information = information;
     }
 }

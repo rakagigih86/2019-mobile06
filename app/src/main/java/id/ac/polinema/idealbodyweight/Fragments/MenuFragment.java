@@ -1,4 +1,4 @@
-package id.ac.polinema.idealbodyweight.Fragments;
+package id.ac.polinema.idealbodyweight.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -25,7 +25,6 @@ public class MenuFragment extends Fragment {
 
     public MenuFragment() {
         // Required empty public constructor
-
     }
 
 
@@ -34,32 +33,33 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        Button brocaButton = view.findViewById(R.id.button_broca);
-        Button bmiButton = view.findViewById(R.id.button_bmi);
-        // sisipkan register event click nanti di sini.
+
+        //sisipkan register event click nanti di sini
+        Button brocaButton = view.findViewById(R.id.buttonBrocca);
+        Button bmiButton = view.findViewById(R.id.buttonBmi);
+
         brocaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (mListener != null) {
+                if (mListener != null){
                     mListener.onBrocaIndexButtonClicked();
                 }
             }
         });
 
-        bmiButton.setOnClickListener(new View.OnClickListener() {
+        bmiButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mListener != null) {
+                if (mListener != null){
                     mListener.onBodyMassIndexButtonClicked();
                 }
             }
         });
+
         return view;
     }
+
     // TODO: Rename method, update argument and hook method into UI event
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -91,6 +91,5 @@ public class MenuFragment extends Fragment {
         // TODO: Update argument type and name
         void onBrocaIndexButtonClicked();
         void onBodyMassIndexButtonClicked();
-        void onFragmentInteraction(Uri uri);
     }
 }

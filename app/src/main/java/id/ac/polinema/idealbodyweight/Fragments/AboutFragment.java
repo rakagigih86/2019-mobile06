@@ -1,9 +1,8 @@
-package id.ac.polinema.idealbodyweight.Fragments;
+package id.ac.polinema.idealbodyweight.fragment;
 
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -35,7 +34,8 @@ public class AboutFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param name Parameter 1.
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
      * @return A new instance of fragment AboutFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -46,8 +46,9 @@ public class AboutFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             name = getArguments().getString(ARG_NAME);
